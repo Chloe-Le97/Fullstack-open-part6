@@ -14,11 +14,11 @@ const AnecdoteList = () =>{
 
   const vote = (anecdote) => {
     const {content,id} = anecdote 
-    dispatch(voteAna(id))
-    dispatch(notification(`You have voted for '${content}' `))
-    setTimeout(()=>{
-      dispatch(removeNotification())
-  },5000)
+    dispatch(voteAna(anecdote))
+    dispatch(notification(`You have voted for '${content}' `,5000))
+  //   setTimeout(()=>{
+  //     dispatch(removeNotification())
+  // },5000)
 }
 
 
