@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { connect } from 'react-redux' 
 import {createAnac} from '../reducers/anecdoteReducer'
 import {notification} from '../reducers/notificationReducer'
-import {removeNotification} from '../reducers/notificationReducer'
 
 const AnecdoteForm = (props) =>{
     const dispatch = useDispatch()
@@ -11,11 +11,8 @@ const AnecdoteForm = (props) =>{
         event.preventDefault();
         const content = event.target.note.value;
         event.target.note.value = '';  
-        dispatch(createAnac(content));
-        dispatch(notification('Add new anecdote sucessful',5000))
-        // setTimeout(()=>{
-        //     dispatch(removeNotification())
-        // },5000)
+        props.createAnac(content);
+        props.notification('Add new anecdote sucessful',5000)
       }
     return (
         <form onSubmit={addNew}>
@@ -26,4 +23,8 @@ const AnecdoteForm = (props) =>{
 
 }
 
-export default AnecdoteForm;
+const mapDispatchToProps = {
+    createAnac,notification
+  }
+
+export default connect(null,mapDispatchToProps)(AnecdoteForm);
