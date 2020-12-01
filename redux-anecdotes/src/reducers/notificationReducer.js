@@ -12,12 +12,17 @@ const notiReducer = (state='',action) =>{
 }
 
 export const notification = (data,time) =>{
+    let timeOutId 
     return async dispatch=>{
         await dispatch({
             type:'SET_NOTI',
             data
         })
-        setTimeout(()=>{
+        
+        if(timeOutId){
+            clearTimeout(timeOutId)
+        }
+        timeOutId = setTimeout(()=>{
             dispatch({
                 type:'REMOVE_NOTI'
             })
